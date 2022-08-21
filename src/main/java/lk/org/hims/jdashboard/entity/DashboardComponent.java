@@ -12,24 +12,26 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import lk.org.hims.jdashboard.enums.FileType;
+import javax.persistence.ManyToOne;
+import lk.org.hims.jdashboard.enums.DashboardComponentType;
 
 /**
  *
  * @author buddhika
  */
 @Entity
-public class File implements Serializable {
+public class DashboardComponent implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    @Enumerated(EnumType.STRING)
-    private FileType type;
+    @Enumerated(EnumType.ORDINAL)
+    private DashboardComponentType dashboardComponentType;
     
-    
+    @ManyToOne
+    private Dashboard dashboard;
 
     public Long getId() {
         return id;
@@ -38,6 +40,8 @@ public class File implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    
+    
 
     @Override
     public int hashCode() {
@@ -49,10 +53,10 @@ public class File implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof File)) {
+        if (!(object instanceof DashboardComponent)) {
             return false;
         }
-        File other = (File) object;
+        DashboardComponent other = (DashboardComponent) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -61,7 +65,7 @@ public class File implements Serializable {
 
     @Override
     public String toString() {
-        return "lk.org.hims.jdashboard.entity.File[ id=" + id + " ]";
+        return "lk.org.hims.jdashboard.entity.DashboardComponent[ id=" + id + " ]";
     }
 
     public String getName() {
@@ -72,12 +76,20 @@ public class File implements Serializable {
         this.name = name;
     }
 
-    public FileType getType() {
-        return type;
+    public DashboardComponentType getDashboardComponentType() {
+        return dashboardComponentType;
     }
 
-    public void setType(FileType type) {
-        this.type = type;
+    public void setDashboardComponentType(DashboardComponentType dashboardComponentType) {
+        this.dashboardComponentType = dashboardComponentType;
+    }
+
+    public Dashboard getDashboard() {
+        return dashboard;
+    }
+
+    public void setDashboard(Dashboard dashboard) {
+        this.dashboard = dashboard;
     }
     
 }

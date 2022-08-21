@@ -7,27 +7,27 @@ package lk.org.hims.jdashboard.entity;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import lk.org.hims.jdashboard.enums.FileType;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author buddhika
  */
 @Entity
-public class File implements Serializable {
+public class FileColumn implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
-    @Enumerated(EnumType.STRING)
-    private FileType type;
+    
+    @ManyToOne
+    private File file;
+    private String colName;
+    private int colNumber;
     
     
 
@@ -49,10 +49,10 @@ public class File implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof File)) {
+        if (!(object instanceof FileColumn)) {
             return false;
         }
-        File other = (File) object;
+        FileColumn other = (FileColumn) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -61,23 +61,31 @@ public class File implements Serializable {
 
     @Override
     public String toString() {
-        return "lk.org.hims.jdashboard.entity.File[ id=" + id + " ]";
+        return "lk.org.hims.jdashboard.entity.FileColumn[ id=" + id + " ]";
     }
 
-    public String getName() {
-        return name;
+    public File getFile() {
+        return file;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFile(File file) {
+        this.file = file;
     }
 
-    public FileType getType() {
-        return type;
+    public String getColName() {
+        return colName;
     }
 
-    public void setType(FileType type) {
-        this.type = type;
+    public void setColName(String colName) {
+        this.colName = colName;
+    }
+
+    public int getColNumber() {
+        return colNumber;
+    }
+
+    public void setColNumber(int colNumber) {
+        this.colNumber = colNumber;
     }
     
 }

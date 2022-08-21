@@ -3,6 +3,9 @@
   <persistence-unit name="pu" transaction-type="JTA">
     <provider>com.objectdb.jpa.Provider</provider>
     <class>lk.org.hims.jdashboard.entity.File</class>
+    <class>lk.org.hims.jdashboard.entity.FileColumn</class>
+    <class>lk.org.hims.jdashboard.entity.FileCell</class>
+    <class>lk.org.hims.jdashboard.entity.Dashboard</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="D:\Data\jd.odb"/>
       <property name="javax.persistence.jdbc.user" value="admin"/>

@@ -26,4 +26,13 @@ public class FileController implements Serializable {
     public FileController() {
     }
 
+    public String uploadFile(){
+        if (file == null) {
+//            JsfUtil.addErrorMessage("File ?");
+            return "";
+        }
+        
+        return "";
+    }
+    
 }
